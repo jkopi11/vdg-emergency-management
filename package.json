@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "private": false,
+  "name": "vdg-emergency-management",
+  "description": "Emergency Management Portal using AngularJS",
+  "license": "MIT",
+  "repository":"none",
+  "devDependencies": {
+    "karma": "^0.12.16",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-jasmine": "~0.1.0",
+    "protractor": "^2.1.0",
+    "http-server": "^0.6.1",
+    "tmp": "0.0.23",
+    "bower": "^1.3.1",
+    "shelljs": "^0.2.6"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "prestart": "npm install",
+    "start": "http-server -a 0.0.0.0 -c-1 -p 8000"
+  }
+}

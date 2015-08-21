@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="page-header">
+    <h2 class="h3">Select Emergency Type</h2>
+  </div>
+  <div class="simpleDemo row">
+    <div class="col-md-10">
+      <form>
+        <div class="form-group">
+          <label for="emerScenario" class="col-md-2">Event Type</label>
+          <div class="col-md-6">
+            <select ng-model="selectedScenario" ng-change="updateRequestsForScenarios()" ng-options="scenario.name for scenario in emergencyScenarios" class="form-control"></select>
+          </div>
+          <div class="col-md-3 pull-right">
+            <button class="btn btn-success" ng-click="updateEmergencyMode()">{{emergencyModeStatus}}</button>
+            <button class="btn btn-danger" ng-show="emergencyMode" ng-click="stopEmergencyMode()">Stop EM</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="page-header">
+    <h2 class="h3">Add/Delete Emergency Requests</h2>
+  </div>
+  <div class="simpleDemo row">
+    <div ng-repeat="(listName, list) in requestState.lists" class="col-md-10">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{listName}}</h3>
+            </div>
+            <div ng-show="listName === 'all'" class="col-md-12">
+              <form>
+                <div class="form-group">
+                  <label>Filter List:</label>
+                  <input type="text" class="form-control" ng-model="allFilter">
+                </div>
+              </form>
+            </div> 
+            <div class="panel-body" ng-include="'./requests/drag-containers.html'"></div>
+        </div>
+    </div>
+  </div>
+</div>

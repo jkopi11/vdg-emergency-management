@@ -1,0 +1,12 @@
+<ul dnd-list="list" dnd-horizontal-list="true" class="itemList">
+  <li ng-repeat="request in list | orderBy:'Name' | filter:allFilter"
+      dnd-draggable="request"
+      dnd-effect-allowed="copy"
+      dnd-selected="requestState.selected = request"
+      ng-class="{'selected': requestState.selected === request, 'included': request.included && listName === 'all'}"
+      ng-dblclick="moveRequest(request,listName, $index)"
+      class="col-md-4 emergency-request-list"
+      style="border-left-color: {{request.MapColor}};">
+    {{request.Name | limitTo: 30}}
+  </li>
+</ul>

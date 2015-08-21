@@ -1,0 +1,17 @@
+{
+  "name": "vdg-emergency-management",
+  "description": "Village of Downers Grove - Emergency Management Internal Website to manage requests and relay information to staff",
+  "version": "0.0.1",
+  "homepage": "http://www.downers.us",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.4.x",
+    "angular-mocks": "1.4.x",
+    "jquery": "~2.1.1",
+    "bootstrap": "3.3.x",
+    "angular-route": "1.4.x",
+    "angular-drag-and-drop-lists":"*",
+    "moment":"~2.10.6"
+  }
+}
