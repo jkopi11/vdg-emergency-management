@@ -1,44 +1,87 @@
 <div class="container">
   <div class="page-header">
-    <h2 class="h3">Event Information</h2>
+    <h2 class="h3">New Event Information</h2>
   </div>
   <div class="row">
     <div class="col-md-10">
       <form ng-submit="addInfo()" style="margin-top:30px;">
-        <h3 class="h4">Add new event information</h3>
         <div class="form-group">
           <label>Title (optional)</label>
           <input type="text"
             class="form-control"
             placeholder="Event Title (optional)"
-            ng-model="eventTitle"></input>
+            ng-model="editInfo.title"></input>
         </div>
         <div class="form-group">
           <label>Description</label>
           <textarea
             class="form-control"
             placeholder="Enter a description of the item"
-            ng-model="eventDescription"></textarea>
+            ng-model="editInfo.description"></textarea>
         </div>
         <div class="form-group">
           <label>Active</label>
           <select
             class="form-control"
-            ng-model="eventValid">
-            <option value="Yes" ng-Selected="true">Yes</option>
+            ng-model="editInfo.active"
+            ng-init="editInfo.active == 'Yes'">
+            <option value="Yes">Yes</option>
             <option value="No">No</option>
           </select>
         </div>
         <input type="submit" class="btn btn-primary" value="Add Info"></input>
       </form>
     </div>
+    <div class="col-md-2" ng-show="informationItems.length > 0">
+      <a class="btn btn-success" ng-click="postChangesToServer()">Update Server</a>
+    </div>
   </div>
-  <div class="row">
+  
+  <div class="row" style="margin-bottom:20px">
     <div class="col-md-10">
+      <div class="page-header">
+        <h2 class="h3">List of Event Items</h2>
+      </div>
       <div ng-repeat="info in informationItems">
-        <legend>{{info.title ? info.title + " - " + (info.timestamp * 1000 | date:'EEEE h:mm a') : (info.timestamp * 1000 | date:'EEEE h:mm a')}}</legend>
-        <div class="col-md-12">{{info.description}}</div>
-        <div class="col-md-6 pull-right">{{info.timestamp * 1000 | date:'MM/dd/yyyy h:mm a'}}</div>
+        <div class="row">
+          <div class="col-md-6">
+            <legend>{{info.title ? info.title + " - " + (info.timestamp * 1000 | date:'EEEE h:mm a') : (info.timestamp * 1000 | date:'EEEE h:mm a')}}</legend>
+            <button class="btn btn-default pull-right" ng-click="editInfo = info; editMode = true; getOriginal(info)"><span class="glyphicon glyphicon-pencil"></span></button>
+            <div class="col-md-12">{{info.description}}</div>
+            <div class="col-md-6 pull-right">{{info.timestamp * 1000 | date:'MM/dd/yyyy h:mm a'}}</div>
+          </div>
+          <div ng-show="editMode && editInfo == info" class="col-md-6 pull-right">
+            <form ng-submit="editMode = false">
+              <div class="form-group">
+                <label>Title (optional)</label>
+                <input type="text"
+                  class="form-control"
+                  placeholder="Event Title (optional)"
+                  ng-model="editInfo.title"></input>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea
+                  class="form-control"
+                  placeholder="Enter a description of the item"
+                  ng-model="editInfo.description"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Active</label>
+                <select
+                  class="form-control"
+                  ng-model="editInfo.active">
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <input type="submit" class="btn btn-primary" value="Save"></input>
+              <input type="button" class="btn btn-default" value="Cancel" ng-click="informationItems[$index] = original;"></input>
+              <input type="button" class="btn btn-danger pull-right" value="Delete" ng-click="informationItems.splice($index);"></input>
+
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

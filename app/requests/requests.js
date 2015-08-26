@@ -148,7 +148,7 @@ angular.module('eventMgmt.requests', ['ngRoute'])
       var req = {
         method: 'GET',
         url: 'http://gis.vodg.us/requests/support_files/startemergencymode.py',
-        params: {requests:requestIDs.toString(),scenario:$scope.emerScenario.name}
+        params: {requests:requestIDs.toString(),scenario:$scope.selectedScenario.name}
       };
       $http(req).then(function(response){
         console.log(response);

@@ -73,6 +73,14 @@ optgroup {
     
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 20%;
+  height: 20px;
+  background-color: #c47272;
+}
+
 .navbar > * {
     background-color: #c47272 !important;
 }

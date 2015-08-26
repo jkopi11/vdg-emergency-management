@@ -9,8 +9,11 @@ angular.module('vdgEmerMgmtApp', [
   'dndLists'
 ])
   
-.config(['$routeProvider',
-  function($routeProvider) {
+.config(['$routeProvider', '$httpProvider',
+  function($routeProvider, $httpProvider) {
+    
+    $httpProvider.defaults.useXDomain = true;
+    
     $routeProvider.otherwise({
         redirectTo: '/requests'
       });
